@@ -3,6 +3,35 @@ const toggleButton = document.querySelector('.toggle-mode');
 toggleButton.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
 });
+// Dark mode toggle
+const themeToggle = document.querySelector('.toggle-mode');
+const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+// Check for saved theme preference or use system preference
+const currentTheme = localStorage.getItem('theme') || 
+    (prefersDarkScheme.matches ? 'dark' : 'light');
+document.documentElement.setAttribute('data-theme', currentTheme);
+
+themeToggle.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+});
+
+// Mobile menu toggle
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const navLinks = document.querySelector('.nav-links');
+
+mobileMenuBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    
+    // Animate hamburger menu
+    const spans = mobileMenuBtn.querySelectorAll('span');
+    spans.forEach(span => span.classList.toggle('active'));
+});
+
 
 // Dil Değiştirme
 const langButtons = document.querySelectorAll('.lang-switch');
