@@ -1,8 +1,4 @@
-﻿// Gece Modu
-const toggleButton = document.querySelector('.toggle-mode');
-toggleButton.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-});
+﻿
 // Dark mode toggle
 const themeToggle = document.querySelector('.toggle-mode');
 const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
@@ -33,63 +29,167 @@ mobileMenuBtn.addEventListener('click', () => {
 });
 
 
-// Dil Değiştirme
-const langButtons = document.querySelectorAll('.lang-switch');
-langButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const selectedLang = button.getAttribute('data-lang');
-        alert(`Dil ${selectedLang} olarak seçildi.`);
+document.addEventListener('DOMContentLoaded', () => {
+    // DOM elementlerini seçme
+    const fromLang = document.querySelector('.from-lang');
+    const toLang = document.querySelector('.to-lang');
+    const swapBtn = document.querySelector('.swap-lang');
+    const inputText = document.querySelector('.input-text');
+    const outputText = document.querySelector('.output-text');
+    const translateBtn = document.querySelector('.translate-button');
+    const charCount = document.querySelector('.char-count');
+    const clearTextBtn = document.querySelector('.clear-text');
+    const copyTextBtn = document.querySelector('.copy-text');
+    const clearHistoryBtn = document.querySelector('.clear-history');
+    const historyList = document.querySelector('.history-list');
+
+    // Karakter sayısını güncelleme
+    inputText.addEventListener('input', () => {
+        const length = inputText.value.length;
+        charCount.textContent = `${length}/5000`;
     });
-});
 
-// Otomatik Temizleme
-const inputText = document.querySelector('.input-text');
-inputText.addEventListener('focus', () => {
-    inputText.value = '';
-});
+    // Dilleri değiştirme
+    swapBtn.addEventListener('click', () => {
+        const tempLang = fromLang.value;
+        fromLang.value = toLang.value;
+        toLang.value = tempLang;
 
-// Kopyala Butonu
-const copyButton = document.querySelector('.copy-button');
-const outputText = document.querySelector('.output-text');
+        const tempText = inputText.value;
+        inputText.value = outputText.value;
+        outputText.value = tempText;
 
-copyButton.addEventListener('click', () => {
-    outputText.select();
-    document.execCommand('copy');
-    alert('Çeviri kopyalandı!');
-});
+        updateCharCount();
+    });
 
-// Çeviri Yapma ve Geçmişe Ekleme
-const translateButton = document.querySelector('.translate-button');
-const historyList = document.querySelector('.history-list');
-const history = [];
+    // Metni temizleme
+    clearTextBtn.addEventListener('click', () => {
+        inputText.value = '';
+        outputText.value = '';
+        updateCharCount();
+    });
 
-translateButton.addEventListener('click', () => {
-    const text = inputText.value;
-    if (text) {
-        outputText.value = text.split('').reverse().join('');  // Basit çeviri simülasyonu
+    // Metni kopyalama
+    copyTextBtn.addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText(outputText.value);
+            showNotification('Metin kopyalandı!');
+        } catch (err) {
+            showNotification('Kopyalama başarısız oldu!', 'error');
+        }
+    });
 
-        // Geçmişe ekleme
-        const translation = { input: text, output: outputText.value };
-        history.push(translation);
-        const listItem = document.createElement('li');
-        listItem.textContent = `${translation.input} → ${translation.output}`;
-        historyList.appendChild(listItem);
+    // Çeviri geçmişini yerel depolamadan yükleme
+    function loadHistory() {
+        const history = JSON.parse(localStorage.getItem('translationHistory')) || [];
+        historyList.innerHTML = '';
+        
+        history.forEach(item => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <div class="history-item">
+                    <div class="translation-pair">
+                        <p class="original-text">${item.from}: ${item.originalText}</p>
+                        <p class="translated-text">${item.to}: ${item.translatedText}</p>
+                    </div>
+                    <div class="history-actions">
+                        <button class="reuse-translation">Tekrar Kullan</button>
+                        <button class="delete-translation">Sil</button>
+                    </div>
+                </div>
+            `;
+            historyList.appendChild(li);
+        });
     }
-});
-document.getElementById('kayıtButonu').addEventListener('click', function() {
-    const kelime = document.getElementById('kelime').value;
-    const karşılık = document.getElementById('karşılık').value;
-    const kelimeListesi = document.getElementById('kelimeListesi');
 
-    if (kelime && karşılık) {
-        const li = document.createElement('li');
-        li.textContent = `${kelime} - ${karşılık}`;
-        kelimeListesi.appendChild(li);
-
-        // Input alanlarını temizle
-        document.getElementById('kelime').value = '';
-        document.getElementById('karşılık').value = '';
-    } else {
-        alert('Lütfen hem kelimeyi hem de karşılığını girin.');
+    // Çeviri geçmişine ekleme
+    function addToHistory(originalText, translatedText, from, to) {
+        const history = JSON.parse(localStorage.getItem('translationHistory')) || [];
+        history.unshift({ originalText, translatedText, from, to, date: new Date() });
+        
+        // Maksimum 10 kayıt tutma
+        if (history.length > 10) {
+            history.pop();
+        }
+        
+        localStorage.setItem('translationHistory', JSON.stringify(history));
+        loadHistory();
     }
+
+    // Çeviri geçmişini temizleme
+    clearHistoryBtn.addEventListener('click', () => {
+        localStorage.removeItem('translationHistory');
+        loadHistory();
+        showNotification('Çeviri geçmişi temizlendi!');
+    });
+
+    // Çeviri işlemi
+    translateBtn.addEventListener('click', async () => {
+        if (!inputText.value.trim()) {
+            showNotification('Lütfen çevrilecek metin girin!', 'error');
+            return;
+        }
+
+        try {
+            // Çeviri Kodu Gelicek
+            // Şimdilik Aynısını Yazıcak
+            const translatedText = `Translated: ${inputText.value}`;
+            outputText.value = translatedText;
+            
+            addToHistory(
+                inputText.value,
+                translatedText,
+                fromLang.value,
+                toLang.value
+            );
+            
+            showNotification('Çeviri tamamlandı!');
+        } catch (error) {
+            showNotification('Çeviri sırasında bir hata oluştu!', 'error');
+        }
+    });
+
+    // Bildirim gösterme
+    function showNotification(message, type = 'success') {
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.textContent = message;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.remove();
+        }, 3000);
+    }
+
+    // Karakter sayısını güncelleme yardımcı fonksiyonu
+    function updateCharCount() {
+        charCount.textContent = `${inputText.value.length}/5000`;
+    }
+
+    // Sayfa yüklendiğinde geçmişi yükle
+    loadHistory();
+
+    historyList.addEventListener('click', (e) => {
+        const historyItem = e.target.closest('.history-item');
+        if (!historyItem) return;
+
+        if (e.target.classList.contains('reuse-translation')) {
+            const originalText = historyItem.querySelector('.original-text').textContent.split(': ')[1];
+            const translatedText = historyItem.querySelector('.translated-text').textContent.split(': ')[1];
+            
+            inputText.value = originalText;
+            outputText.value = translatedText;
+            updateCharCount();
+        }
+
+        if (e.target.classList.contains('delete-translation')) {
+            const history = JSON.parse(localStorage.getItem('translationHistory'));
+            const itemIndex = Array.from(historyList.children).indexOf(historyItem.parentElement);
+            
+            history.splice(itemIndex, 1);
+            localStorage.setItem('translationHistory', JSON.stringify(history));
+            loadHistory();
+        }
+    });
 });
