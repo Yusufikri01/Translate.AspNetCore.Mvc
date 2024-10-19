@@ -1,11 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Translate.AspNetCore.Mvc.Models
 {
-	public class RegisterModel
+	public class UserModel
 	{
-		[Required(ErrorMessage ="İSİM ALANI ZORUNLU")]
+		[Key]
+		public int Id { get; set; }
+
+		[Required(ErrorMessage = "İSİM ALANI ZORUNLU")]
 		public string FirstName { get; set; }
 
 		[Required(ErrorMessage = "SOYİSİM ALANI ZORUNLU")]

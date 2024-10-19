@@ -11,7 +11,7 @@ using Translate.AspNetCore.Mvc.Entities;
 namespace Translate.AspNetCore.Mvc.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241019111400_Initial")]
+    [Migration("20241019122410_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -24,7 +24,7 @@ namespace Translate.AspNetCore.Mvc.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Translate.AspNetCore.Mvc.Models.RegisterModel", b =>
+            modelBuilder.Entity("Translate.AspNetCore.Mvc.Models.UserModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

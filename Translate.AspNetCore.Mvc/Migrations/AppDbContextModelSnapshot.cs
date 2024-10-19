@@ -21,7 +21,7 @@ namespace Translate.AspNetCore.Mvc.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Translate.AspNetCore.Mvc.Models.RegisterModel", b =>
+            modelBuilder.Entity("Translate.AspNetCore.Mvc.Models.UserModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
