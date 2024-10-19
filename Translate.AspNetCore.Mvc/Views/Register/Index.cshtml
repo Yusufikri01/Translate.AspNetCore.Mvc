@@ -1,0 +1,125 @@
+﻿@model Translate.AspNetCore.Mvc.Models.RegisterModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayıt Ol</title>
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .register-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+            .register-container h1 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            width: 100%;
+        }
+        .btn-action {
+            margin: 5px;
+            padding: 10px 20px;
+            background-color: #ee2c2c;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            text-align: center;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+            .btn-action:hover {
+                background-color: #ffffff;
+                color: #ee2c2c;
+            }
+
+            .btn-action:active {
+                background-color: #d72d2d;
+                color: #fff;
+                transform: scale(0.98);
+            }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+            .login-link a {
+                color: #007bff;
+                text-decoration: none;
+            }
+
+                .login-link a:hover {
+                    text-decoration: underline;
+                }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h1>Kayıt Ol</h1>
+        <hr />
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-action="Register">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="FirstName" class="control-label">Ad</label>
+                        <input asp-for="FirstName" class="form-control" placeholder="Adınızı girin" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LastName" class="control-label">Soyad</label>
+                        <input asp-for="LastName" class="form-control" placeholder="Soyadınızı girin" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label">Email</label>
+                        <input asp-for="Email" class="form-control" placeholder="Email adresinizi girin" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label">Şifre</label>
+                        <input asp-for="Password" type="password" class="form-control" placeholder="Şifrenizi girin" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="submit" value="Kayıt Ol" class="btn btn-primary btn-action" />
+                    </div>
+                </form>
+                <div class="login-link">
+                    <p>Zaten bir hesabınız var mı? <a href="/Login/Login">Giriş yapın</a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
