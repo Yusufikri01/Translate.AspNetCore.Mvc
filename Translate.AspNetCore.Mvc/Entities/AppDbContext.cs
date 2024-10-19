@@ -9,8 +9,8 @@ namespace Translate.AspNetCore.Mvc.Entities
 		{
 
 		}
-
-		public DbSet<UserViewModel> UserViewModel { get; set; }
+		// VERİTABANINDA "Users" adında bir tablo oluşturuyor.
+		public DbSet<RegisterModel> Users { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{

@@ -3,8 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Translate.AspNetCore.Mvc.Models
 {
-	
-	public class UserViewModel
+	public class RegisterModel
 	{
 		[Key]
 		public int Id { get; set; }	
@@ -14,6 +13,7 @@ namespace Translate.AspNetCore.Mvc.Models
 
 		[Required(ErrorMessage = "SOYİSİM ALANI ZORUNLU")]
 		public string LastName { get; set; }
+
 		[Required(ErrorMessage = "E-POSTA ALANI ZORUNLU")]
 		public string Email { get; set; }
 		[Required(ErrorMessage = "ŞİFRE ALANI ZORUNLU")]
