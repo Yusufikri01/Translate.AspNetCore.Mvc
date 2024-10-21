@@ -1,8 +1,122 @@
-﻿
-@{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿<div class="vocabulary-page">
+    <div class="vocabulary-container">
+        <!-- Kelime Ekleme Formu -->
+        <div class="word-form">
+            <h2>Kelime Ekle</h2>
+            <form asp-action="AddWord">
+                <div class="input-group">
+                    <div class="form-field">
+                        <label for="foreignWord">Yabancı Kelime</label>
+                        <input type="text" id="foreignWord" name="foreignWord" required 
+                               placeholder="Örn: Apple" />
+                    </div>
+                    <div class="form-field">
+                        <label for="nativeWord">Türkçe Karşılığı</label>
+                        <input type="text" id="nativeWord" name="nativeWord" required 
+                               placeholder="Örn: Elma" />
+                    </div>
+                </div>
+                <div class="category-select">
+                    <label for="category">Kategori</label>
+                    <select id="category" name="category" required>
+                        <option value="">Kategori Seçin</option>
+                        <option value="general">Genel</option>
+                        <option value="business">İş İngilizcesi</option>
+                        <option value="daily">Günlük Konuşma</option>
+                        <option value="academic">Akademik</option>
+                    </select>
+                </div>
+                <button type="submit" class="save-btn">Kelimeyi Kaydet</button>
+            </form>
+        </div>
 
-<h1>Merhabalar</h1>
+        <!-- Arama ve Filtreleme -->
+        <div class="search-filters">
+            <div class="search-row">
+                <div class="search-input">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Kelime ara..." />
+                </div>
+                <div class="category-filter">
+                    <select>
+                        <option value="">Tüm Kategoriler</option>
+                        <option value="general">Genel</option>
+                        <option value="business">İş İngilizcesi</option>
+                        <option value="daily">Günlük Konuşma</option>
+                        <option value="academic">Akademik</option>
+                    </select>
+                </div>
+            </div>
+        </div>
 
+        <!-- Görünüm Değiştirme -->
+        <div class="view-toggle">
+            <button class="active">Liste Görünümü</button>
+            <button>Kart Görünümü</button>
+        </div>
+
+        <!-- Liste Görünümü -->
+        <div class="notebook-container" id="listView">
+            <div class="notebook-header">
+                <h3>Kelimelerim</h3>
+            </div>
+            <div class="notebook-page">
+                <div class="word-item">
+                    <span class="word-foreign">Apple</span>
+                    <span class="word-native">Elma</span>
+                    <div class="learning-status status-known">Öğrenildi</div>
+                    <span class="word-date">21.10.2024</span>
+                    <div class="word-actions">
+                        <button class="action-btn edit-btn">Düzenle</button>
+                        <button class="action-btn delete-btn">Sil</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kart Görünümü -->
+        <div class="cards-view" id="cardView" style="display: none;">
+            <div class="word-card">
+                <div class="word-card-content">
+                    <div class="word-card-foreign">Apple</div>
+                    <div class="word-card-native">Elma</div>
+                    <div class="word-card-category">Genel</div>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 75%"></div>
+                    </div>
+                    <div class="word-card-status">
+                        <span class="learning-status status-learning">Öğreniliyor</span>
+                    </div>
+                    <div class="word-actions">
+                        <button class="action-btn edit-btn">Düzenle</button>
+                        <button class="action-btn delete-btn">Sil</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Görünüm değiştirme
+    const viewButtons = document.querySelectorAll('.view-toggle button');
+    const listView = document.getElementById('listView');
+    const cardView = document.getElementById('cardView');
+
+    viewButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            viewButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            if (this.textContent === 'Liste Görünümü') {
+                listView.style.display = 'block';
+                cardView.style.display = 'none';
+            } else {
+                listView.style.display = 'none';
+                cardView.style.display = 'grid';
+            }
+        });
+    });
+});
+</script>

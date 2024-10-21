@@ -33,13 +33,13 @@ namespace Translate.AspNetCore.Mvc.Controllers
                 if (user != null)
                 {
                     var claims = new List<Claim>
-{
-    new Claim(ClaimTypes.GivenName, user.FirstName),
-    new Claim(ClaimTypes.Surname, user.LastName),
-    new Claim(ClaimTypes.Email, user.Email),
-    new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
-    new Claim(ClaimTypes.Role, "User")
-};
+                {
+                    new Claim(ClaimTypes.GivenName, user.FirstName),
+                    new Claim(ClaimTypes.Surname, user.LastName),
+                    new Claim(ClaimTypes.Email, user.Email),
+                    new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
+                     new Claim(ClaimTypes.Role, "User")
+                };
 
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));

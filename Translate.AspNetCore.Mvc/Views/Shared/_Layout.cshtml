@@ -1,54 +1,83 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Translate.AspNetCore.Mvc</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-      <link rel="stylesheet" href="~/css/main.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/main.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/register.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/word_book.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/quiz.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Translate.AspNetCore.Mvc.styles.css" asp-append-version="true" />
-</head>
-<body>
-        <header class="header">
-    <div class="container">
-        <div class="logo">
-            <h1>Çeviri</h1>
-        </div>
-        <nav class="nav-actions">
-            <button class="mobile-menu-btn" aria-label="Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-links">
-                <li><a class="active" asp-area="" asp-controller="Home" asp-action="Index">Ana Sayfa</a></li>
-                <li><a asp-area="" asp-controller="WordBook" asp-action="Index">Kelime Defteri</a></li>
-                <li><a asp-area="" asp-controller="Dictionary" asp-action="Index">Sözlük</a></li>
-                <li><a asp-area="" asp-controller="Login" asp-action="Index">Oturum Aç / Üye Ol</a></li>
 
-            </ul>
-            <div class="actions">
-                <button class="toggle-mode" aria-label="Gece Modu">
-                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="5"/>
-                        <line x1="12" y1="1" x2="12" y2="3"/>
-                        <line x1="12" y1="21" x2="12" y2="23"/>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                        <line x1="1" y1="12" x2="3" y2="12"/>
-                        <line x1="21" y1="12" x2="23" y2="12"/>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-                    </svg>
-                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-                    </svg>
-                </button>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Çeviri</h1>
             </div>
-        </nav>
-    </div>
-</header>
+            <nav class="nav-actions">
+                <button class="mobile-menu-btn" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-links">
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index" class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Home" && 
+                  ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">
+                            Ana Sayfa
+                        </a></li>
+
+                    <li><a asp-area="" asp-controller="WordBook" asp-action="Index"
+                            class="@(ViewContext.RouteData.Values["Controller"].ToString() == "WordBook" ? "active" : "")">
+                            Kelime Defteri
+                        </a></li>
+
+                    <li><a asp-area="" asp-controller="Dictionary" asp-action="Index"
+                            class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Dictionary" ? "active" : "")">
+                            Sözlük
+                        </a></li>
+                          <li><a asp-area="" asp-controller="Quiz" asp-action="Index"
+                            class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Quiz" ? "active" : "")">
+                            Testler
+                        </a></li>
+
+                    <li><a asp-area="" asp-controller="Login" asp-action="Index"
+                            class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Login" ? "active" : "")">
+                            Oturum Aç / Üye Ol
+                        </a></li>
+                </ul>
+
+                </ul>
+                <div class="actions">
+                    <button class="toggle-mode" aria-label="Gece Modu">
+                        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5" />
+                            <line x1="12" y1="1" x2="12" y2="3" />
+                            <line x1="12" y1="21" x2="12" y2="23" />
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                            <line x1="1" y1="12" x2="3" y2="12" />
+                            <line x1="21" y1="12" x2="23" y2="12" />
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                        </svg>
+                        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
 
     <div class="container">
         <main role="main" class="pb-3">
@@ -65,4 +94,5 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>

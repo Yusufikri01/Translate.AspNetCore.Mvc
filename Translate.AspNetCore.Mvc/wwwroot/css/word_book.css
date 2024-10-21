@@ -1,0 +1,380 @@
+.vocabulary-page {
+    min-height: 100vh;
+    background: #f0ebe1;
+    padding: 2rem 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.vocabulary-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Form Bölümü Stilleri */
+.word-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 3rem;
+}
+
+.word-form h2 {
+    color: #2C3E50;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.input-group {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-field {
+    flex: 1;
+}
+
+.form-field label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #2C3E50;
+    font-weight: 500;
+}
+
+.form-field input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #E2E8F0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-field input:focus {
+    outline: none;
+    border-color: #4A90E2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+.save-btn {
+    background: #4A90E2;
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.save-btn:hover {
+    background: #357ABD;
+    transform: translateY(-2px);
+}
+
+/* Kelime Listesi Stilleri */
+.notebook-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    position: relative;
+    box-shadow: 
+        0 0 5px rgba(0,0,0,0.1),
+        0 5px 20px rgba(0,0,0,0.05);
+}
+
+.notebook-header {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-bottom: 2px solid #e9ecef;
+    margin-bottom: 1rem;
+    border-radius: 5px 5px 0 0;
+}
+
+.notebook-header h3 {
+    margin: 0;
+    color: #2C3E50;
+    font-size: 1.5rem;
+}
+
+.notebook-page {
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        transparent 20px,
+        #fff 20px);
+    background-size: 100% 30px;
+    padding: 0 0 0 30px;
+    line-height: 30px;
+    position: relative;
+}
+
+.notebook-page::before {
+    content: '';
+    position: absolute;
+    left: 23px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #ff9999;
+}
+
+.word-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 15px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #eee;
+    transition: all 0.3s ease;
+}
+
+.word-item:hover {
+    background: rgba(74, 144, 226, 0.05);
+}
+
+.word-foreign {
+    font-weight: 600;
+    color: #2C3E50;
+    min-width: 200px;
+}
+
+.word-native {
+    color: #666;
+}
+
+.word-date {
+    color: #999;
+    font-size: 0.85rem;
+    min-width: 100px;
+    text-align: right;
+}
+search-filters {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.search-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.search-input {
+    flex: 2;
+    position: relative;
+}
+
+.search-input input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 2px solid #E2E8F0;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.search-input i {
+    position: absolute;
+    left: 0.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.category-filter {
+    flex: 1;
+}
+
+.category-filter select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #E2E8F0;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: white;
+}
+
+/* Kategori Seçimi Form'da */
+.category-select {
+    margin-bottom: 1rem;
+}
+
+.category-select select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #E2E8F0;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+/* Kelime Kartları Görünümü */
+.view-toggle {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.view-toggle button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: #f8f9fa;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.view-toggle button.active {
+    background: #4A90E2;
+    color: white;
+}
+
+.cards-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.word-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.word-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.word-card-content {
+    text-align: center;
+}
+
+.word-card-foreign {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2C3E50;
+    margin-bottom: 0.5rem;
+}
+
+.word-card-native {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.word-card-category {
+    font-size: 0.9rem;
+    color: #4A90E2;
+    margin-bottom: 1rem;
+}
+
+.word-card-status {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+/* Öğrenme Durumu Göstergeleri */
+.learning-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.85rem;
+}
+
+.status-new {
+    background: #FFE5E5;
+    color: #FF4444;
+}
+
+.status-learning {
+    background: #FFF3E0;
+    color: #FF8C00;
+}
+
+.status-known {
+    background: #E8F5E9;
+    color: #4CAF50;
+}
+
+/* Düzenleme ve Silme Butonları */
+.word-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.action-btn {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.edit-btn {
+    background: #4A90E2;
+    color: white;
+}
+
+.edit-btn:hover {
+    background: #357ABD;
+}
+
+.delete-btn {
+    background: #FF4444;
+    color: white;
+}
+
+.delete-btn:hover {
+    background: #CC3333;
+}
+
+/* Progress Bar */
+.progress-container {
+    width: 100%;
+    background: #f0f0f0;
+    border-radius: 10px;
+    margin-top: 0.5rem;
+}
+
+.progress-bar {
+    height: 6px;
+    background: #4CAF50;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+    .vocabulary-container {
+        padding: 10px;
+    }
+    
+    .input-group {
+        flex-direction: column;
+    }
+    
+    .word-item {
+        flex-direction: column;
+        padding: 10px 15px;
+    }
+    
+    .word-date {
+        text-align: left;
+    }
+}

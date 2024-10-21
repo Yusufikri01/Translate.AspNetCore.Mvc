@@ -1,0 +1,237 @@
+<div class="quiz-container">
+        <div class="quiz-header">
+            <h1>Kelime Testi</h1>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+        </div>
+
+        <div class="question-container">
+            <div class="question">
+                <span id="question-number">1</span>. Soru: <span id="question-text"></span>
+            </div>
+            <div class="options-container">
+                <div class="option" data-index="0"></div>
+                <div class="option" data-index="1"></div>
+                <div class="option" data-index="2"></div>
+                <div class="option" data-index="3"></div>
+            </div>
+        </div>
+
+        <div class="quiz-footer">
+            <div class="score">Puan: <span id="current-score">0</span></div>
+            <button class="next-btn" disabled>Sonraki Soru</button>
+        </div>
+
+        <div class="result-container">
+            <h2>Test Tamamlandı!</h2>
+            <div class="result-score">Toplam Puan: <span id="final-score">0</span></div>
+            <button class="restart-btn">Tekrar Başla</button>
+        </div>
+    </div>
+@* Test kısmı*@
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    $(document).ready(function() {
+        let currentQuestion = 0;
+        let score = 0;
+        let selectedAnswer = null;
+
+        // Statik sorular ve cevaplar
+         let questions = [
+            {
+                word: "Elma",
+                options: ["Apple", "Banana", "Orange", "Grape"],
+                correctIndex: 0
+            },
+            {
+                word: "Araba",
+                options: ["Car", "Bus", "Bike", "Train"],
+                correctIndex: 0
+            },
+            {
+                word: "Ev",
+                options: ["House", "Building", "School", "Office"],
+                correctIndex: 0
+            },
+            {
+                word: "Kitap",
+                options: ["Book", "Pen", "Pencil", "Notebook"],
+                correctIndex: 0
+            },
+            {
+                word: "Köpek",
+                options: ["Dog", "Cat", "Bird", "Fish"],
+                correctIndex: 0
+            },
+            {
+                word: "Kalem",
+                options: ["Pencil", "Paper", "Notebook", "Eraser"],
+                correctIndex: 0
+            },
+            {
+                word: "Bardak",
+                options: ["Glass", "Cup", "Plate", "Fork"],
+                correctIndex: 0
+            },
+            {
+                word: "Çanta",
+                options: ["Bag", "Shoes", "Shirt", "Pants"],
+                correctIndex: 0
+            },
+            {
+                word: "Bilgisayar",
+                options: ["Computer", "Keyboard", "Monitor", "Mouse"],
+                correctIndex: 0
+            },
+            {
+                word: "Saat",
+                options: ["Watch", "Clock", "Phone", "Calendar"],
+                correctIndex: 0
+            }
+        ];
+
+        function showQuestion() {
+            const question = questions[currentQuestion];
+            $('#question-number').text(currentQuestion + 1);
+            $('#question-text').text(question.word);
+            
+            $('.option').each(function(index) {
+                $(this).text(question.options[index]);
+                $(this).removeClass('selected correct wrong');
+            });
+
+            $('.progress').css('width', `${(currentQuestion + 1) * 10}%`);
+            $('.next-btn').prop('disabled', true);
+            selectedAnswer = null;
+        }
+
+        $('.option').click(function() {
+            if (selectedAnswer !== null) return;
+
+            selectedAnswer = $(this).data('index');
+            $(this).addClass('selected');
+            $('.next-btn').prop('disabled', false);
+
+            // Doğru cevabı kontrol et
+            const question = questions[currentQuestion];
+            if (selectedAnswer === question.correctIndex) {
+                $(this).addClass('correct');
+                score += 10;
+                $('#current-score').text(score);
+            } else {
+                $(this).addClass('wrong');
+                $(`.option[data-index="${question.correctIndex}"]`).addClass('correct');
+            }
+        });
+
+        $('.next-btn').click(function() {
+            currentQuestion++;
+            
+            if (currentQuestion >= questions.length) {
+                $('.question-container, .quiz-footer').hide();
+                $('#final-score').text(score);
+                $('.result-container').show();
+            } else {
+                showQuestion();
+            }
+        });
+
+        $('.restart-btn').click(function() {
+            currentQuestion = 0;
+            score = 0;
+            $('#current-score').text(0);
+            $('.result-container').hide();
+            $('.question-container, .quiz-footer').show();
+            showQuestion();
+        });
+
+        // İlk soruyu göster
+        showQuestion();
+    });
+     });
+     
+
+</script>
+@* veri tabanı kısmı*@
+    @* <script>
+        $(document).ready(function() {
+            let currentQuestion = 0;
+            let score = 0;
+            let questions = [];
+            let selectedAnswer = null;
+
+            function loadQuestions() {
+                // Bu kısmı backende göre yapıcaz
+                $.ajax({
+                    url: '/api/questions',
+                    method: 'GET',
+                    success: function(data) {
+                        questions = data;
+                        showQuestion();
+                    },
+                    error: function() {
+                        alert('Sorular yüklenirken bir hata oluştu!');
+                    }
+                });
+            }
+
+            function showQuestion() {
+                const question = questions[currentQuestion];
+                $('#question-number').text(currentQuestion + 1);
+                $('#question-text').text(question.word);
+                
+                $('.option').each(function(index) {
+                    $(this).text(question.options[index]);
+                    $(this).removeClass('selected correct wrong');
+                });
+
+                $('.progress').css('width', `${(currentQuestion + 1) * 10}%`);
+                $('.next-btn').prop('disabled', true);
+                selectedAnswer = null;
+            }
+
+            $('.option').click(function() {
+                if (selectedAnswer !== null) return;
+
+                selectedAnswer = $(this).data('index');
+                $(this).addClass('selected');
+                $('.next-btn').prop('disabled', false);
+
+                // Doğru cevabı kontrol et
+                const question = questions[currentQuestion];
+                if (selectedAnswer === question.correctIndex) {
+                    $(this).addClass('correct');
+                    score += 10;
+                    $('#current-score').text(score);
+                } else {
+                    $(this).addClass('wrong');
+                    $(`.option[data-index="${question.correctIndex}"]`).addClass('correct');
+                }
+            });
+
+            $('.next-btn').click(function() {
+                currentQuestion++;
+                
+                if (currentQuestion >= questions.length) {
+                    $('.question-container, .quiz-footer').hide();
+                    $('#final-score').text(score);
+                    $('.result-container').show();
+                } else {
+                    showQuestion();
+                }
+            });
+
+            $('.restart-btn').click(function() {
+                currentQuestion = 0;
+                score = 0;
+                $('#current-score').text(0);
+                $('.result-container').hide();
+                $('.question-container, .quiz-footer').show();
+                loadQuestions();
+            });
+
+            // Başlangıçta soruları yükle
+            loadQuestions();
+        });
+    </script> *@
