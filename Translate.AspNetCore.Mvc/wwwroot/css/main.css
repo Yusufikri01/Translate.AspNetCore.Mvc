@@ -3,7 +3,7 @@
     min-height: calc(100vh - var(--nav-height) - 100px);
   }
   
-  /* Translator Section */
+  
   .translator-section {
     margin-bottom: 3rem;
   }

@@ -1,10 +1,10 @@
 ﻿@model Translate.AspNetCore.Mvc.Models.LoginModel
-@{
+@* @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-}
+} *@
 
-<!DOCTYPE html>
+@* <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -96,4 +96,33 @@
         </div>
     </div>
 </body>
-</html>
+</html> *@
+<div class="login-page">
+    <div class="login-container">
+        <h1>Giriş Yap</h1>
+        <hr />
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-action="Login">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="login-form-group">
+                        <label asp-for="Email" class="control-label">Email</label>
+                        <input asp-for="Email" class="form-control" placeholder="Email adresinizi girin" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="login-form-group">
+                        <label asp-for="Password" class="control-label">Şifre</label>
+                        <input asp-for="Password" type="password" class="form-control" placeholder="Şifrenizi girin" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="login-form-group">
+                        <button type="submit" class="login-btn">Giriş Yap</button>
+                    </div>
+                </form>
+                <div class="login-links">
+                    <p>Hesabınız yok mu? <a href="/Register/Index">Hesap oluştur</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

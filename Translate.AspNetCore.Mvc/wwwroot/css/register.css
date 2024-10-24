@@ -1,0 +1,107 @@
+
+.register-page {
+    min-height: 100vh;
+    padding: 2rem 0;
+}
+
+.register-container {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px; 
+    margin: 1rem auto;
+}
+
+.register-container h1 {
+    color: #2C3E50;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.register-container hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 1.5rem 0;
+}
+
+.register-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.register-form-group .control-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #2C3E50;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.register-form-group .form-control {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #E2E8F0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+.register-form-group .form-control:focus {
+    outline: none;
+    border-color: #4A90E2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+.register-btn {
+    width: 100%;
+    padding: 0.875rem;
+    background-color: #4A90E2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.register-btn:hover {
+    background-color: #357ABD;
+}
+
+.register-links {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #2C3E50;
+    font-size: 0.9rem;
+}
+
+.register-links a {
+    color: #4A90E2;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.register-links a:hover {
+    text-decoration: underline;
+}
+
+/* Animasyon efektleri */
+.register-form-group .form-control {
+    transform: translateY(0);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.register-form-group .form-control:focus {
+    transform: translateY(-2px);
+}
+
+@media (max-width: 480px) {
+    .register-container {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+}

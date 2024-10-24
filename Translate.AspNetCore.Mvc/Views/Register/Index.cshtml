@@ -1,5 +1,5 @@
 ﻿@model Translate.AspNetCore.Mvc.Models.RegisterModel
-@{
+@* @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -122,4 +122,43 @@
     </div>
 </body>
 </html>
-
+ *@
+  <div class="register-page">
+    <div class="register-container">
+        <h1>Kayıt Ol</h1>
+        <hr />
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-action="Registration">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="register-form-group">
+                        <label asp-for="FirstName" class="control-label">Ad</label>
+                        <input asp-for="FirstName" class="form-control" placeholder="Adınızı girin" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="register-form-group">
+                        <label asp-for="LastName" class="control-label">Soyad</label>
+                        <input asp-for="LastName" class="form-control" placeholder="Soyadınızı girin" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                    <div class="register-form-group">
+                        <label asp-for="Email" class="control-label">Email</label>
+                        <input asp-for="Email" class="form-control" placeholder="Email adresinizi girin" type="email" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="register-form-group">
+                        <label asp-for="Password" class="control-label">Şifre</label>
+                        <input asp-for="Password" type="password" class="form-control" placeholder="Şifrenizi girin" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="register-form-group">
+                        <button type="submit" class="register-btn">Kayıt Ol</button>
+                    </div>
+                </form>
+                <div class="register-links">
+                    <p>Zaten bir hesabınız var mı? <a href="/Login/Index">Giriş yapın</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
