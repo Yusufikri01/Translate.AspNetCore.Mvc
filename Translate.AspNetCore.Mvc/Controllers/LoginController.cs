@@ -49,6 +49,8 @@ namespace Translate.AspNetCore.Mvc.Controllers
                 else
                 {
                     ModelState.AddModelError("", "E-POSTA VEYA ŞİFRE HATALI.");
+                    // Burada normalde  return View()'dan actiona gitmeye ayarladık.
+                    return RedirectToAction("Index", "Login");
                 }
             }
             return View(model);
