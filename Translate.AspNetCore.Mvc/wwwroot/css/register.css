@@ -105,3 +105,65 @@
         margin: 1rem;
     }
 }
+/* Dark Theme Styles */
+[data-theme="dark"] .register-container {
+    background: #1f2937; /* Koyu arka plan */
+    color: #ffffff; /* Yazı rengi beyaz */
+}
+
+[data-theme="dark"] .register-container h1 {
+    color: #ffffff; /* Başlık yazısı beyaz */
+}
+
+[data-theme="dark"] .register-container hr {
+    border-color: #374151; /* Koyu temaya uygun sınır rengi */
+}
+
+[data-theme="dark"] .register-form-group .control-label {
+    color: #ffffff; /* Kontrol etiket rengi beyaz */
+}
+
+[data-theme="dark"] .register-form-group .form-control {
+    background-color: #374151; /* Koyu temada giriş alanı arka planı */
+    border: 2px solid #4b5563; /* Koyu temada kenar rengi */
+    color: #ffffff; /* Giriş alanı metni beyaz */
+}
+
+[data-theme="dark"] .register-form-group .form-control:focus {
+    border-color: var(--primary-color); /* Seçim durumunda ana renk */
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+[data-theme="dark"] .register-btn {
+    background-color: var(--primary-color); /* Ana renk aynı kalacak */
+}
+
+[data-theme="dark"] .register-links {
+    color: #ffffff; /* Bağlantı yazısı beyaz */
+}
+
+[data-theme="dark"] .register-links a {
+    color: #4A90E2; /* Bağlantı rengi */
+}
+
+[data-theme="dark"] .register-links a:hover {
+    text-decoration: underline; /* Bağlantı hover durumu */
+}
+
+/* Animasyon efektleri */
+[data-theme="dark"] .register-form-group .form-control {
+    transform: translateY(0);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+[data-theme="dark"] .register-form-group .form-control:focus {
+    transform: translateY(-2px);
+}
+
+
+@media (max-width: 480px) {
+    [data-theme="dark"] .register-container {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+}

@@ -358,6 +358,44 @@ search-filters {
     border-radius: 10px;
     transition: width 0.3s ease;
 }
+[data-theme="dark"] .vocabulary-page {
+    background: #1f2937; /* Koyu arka plan */
+    color: #ffffff; /* Yazı rengi beyaz */
+}
+
+[data-theme="dark"] .word-form {
+    background: #374151; /* Koyu temada form arka planı */
+    color: #ffffff; /* Yazı rengi beyaz */
+}
+
+[data-theme="dark"] .word-form h2 {
+    color: #ffffff; /* Başlık yazısı beyaz */
+}
+
+[data-theme="dark"] .form-field label {
+    color: #ffffff; /* Kontrol etiket rengi beyaz */
+}
+
+[data-theme="dark"] .form-field input {
+    background-color: #374151; /* Koyu temada giriş alanı arka planı */
+    border: 2px solid #4b5563; /* Koyu temada kenar rengi */
+    color: #ffffff; /* Yazı rengi beyaz */
+}
+
+[data-theme="dark"] .form-field input:focus {
+    border-color: #60a5fa; /* Odaklanma durumunda kenar rengi */
+    outline: none;
+}
+
+[data-theme="dark"] .submit-button {
+    background-color: #3b82f6; /* Koyu temada buton rengi */
+    color: #ffffff; /* Buton yazı rengi beyaz */
+}
+
+[data-theme="dark"] .submit-button:hover {
+    background-color: #2563eb; /* Hover durumunda buton rengi */
+}
+
 
 /* Responsive Tasarım */
 @media (max-width: 768px) {

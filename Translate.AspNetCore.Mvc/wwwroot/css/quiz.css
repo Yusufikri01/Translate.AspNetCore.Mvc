@@ -139,3 +139,61 @@
     font-size: 1.1em;
     transition: all 0.3s ease;
 }
+/* Dark Theme Styles */
+[data-theme="dark"] .quiz-container {
+    background: #1f2937; 
+    color: #ffffff;
+}
+
+[data-theme="dark"] .quiz-header {
+    border-color: #374151; 
+}
+
+[data-theme="dark"] .progress-bar {
+    background-color: #374151; 
+}
+
+[data-theme="dark"] .progress {
+    background-color: var(--primary-color); 
+}
+
+[data-theme="dark"] .question {
+    color: #ffffff; 
+}
+
+[data-theme="dark"] .option {
+    background-color: #374151; 
+    border: 2px solid transparent; 
+}
+
+[data-theme="dark"] .option:hover {
+    background-color: #4B5563; 
+}
+
+[data-theme="dark"] .option.selected {
+    background-color: var(--primary-color); 
+}
+
+[data-theme="dark"] .option.correct {
+    background-color: var(--success-color); 
+}
+
+[data-theme="dark"] .option.wrong {
+    background-color: var(--error-color); 
+}
+
+[data-theme="dark"] .quiz-footer {
+    border-color: #374151; 
+}
+
+[data-theme="dark"] .next-btn {
+    background-color: var(--primary-color);
+}
+
+[data-theme="dark"] .result-score {
+    color: var(--primary-color); 
+}
+
+[data-theme="dark"] .restart-btn {
+    background-color: var(--primary-color); 
+}
