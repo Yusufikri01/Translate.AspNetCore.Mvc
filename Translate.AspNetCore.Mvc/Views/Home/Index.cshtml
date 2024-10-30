@@ -1,87 +1,48 @@
-﻿<main class="main-content">
+﻿@{
+    ViewData["Title"] = "Çeviri Sayfası";
+}
+
+<main class="main-content">
     <div class="container">
         <section class="translator-section">
-            <div class="translator-container">
+            <form asp-controller="Home" asp-action="Translate" method="post" class="translator-container">
                 <div class="translator-box">
                     <div class="language-selector">
-                        <select class="from-lang">
+                        <select name="fromLang" class="from-lang">
                             <option value="tr">Türkçe</option>
                             <option value="en">İngilizce</option>
                         </select>
-                        <button class="swap-lang" aria-label="Dilleri Değiştir">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M8 3L4 7L8 11"/>
-                                <path d="M4 7H20"/>
-                                <path d="M16 21L20 17L16 13"/>
-                                <path d="M20 17H4"/>
-                            </svg>
+                        <button type="button" class="swap-lang" aria-label="Dilleri Değiştir">
+                            <!-- Swap icon -->
                         </button>
-                        <select class="to-lang">
+                        <select name="toLang" class="to-lang">
                             <option value="en">İngilizce</option>
                             <option value="tr">Türkçe</option>
                         </select>
                     </div>
-                    
+
                     <div class="translation-area">
                         <div class="input-area">
-                            <textarea 
-                                class="input-text" 
-                                placeholder="Çeviri için metin girin..."
-                                maxlength="5000"
-                            ></textarea>
-                            <div class="textarea-actions">
-                                <span class="char-count">0/5000</span>
-                                <button class="clear-text" aria-label="Metni Temizle">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M18 6L6 18"/>
-                                        <path d="M6 6L18 18"/>
-                                    </svg>
-                                </button>
-                            </div>
+                            <textarea name="word"
+                                      class="input-text"
+                                      placeholder="Çeviri için metin girin..."
+                                      maxlength="5000"></textarea>
                         </div>
-                        
+
                         <div class="output-area">
-                            <textarea 
-                                class="output-text" 
-                                placeholder="Çeviri burada görünecek..." 
-                                readonly
-                            ></textarea>
-                            <div class="textarea-actions">
-                                <button class="copy-text" aria-label="Metni Kopyala">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-                                    </svg>
-                                </button>
-                            </div>
+                            <textarea class="output-text"
+                                      placeholder="Çeviri burada görünecek..."
+                                      readonly>@ViewBag.Translation</textarea>
                         </div>
                     </div>
 
                     <div class="translation-actions">
-                        <button class="translate-button">
-                            <span>Çeviri Yap</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14"/>
-                                <path d="M12 5l7 7-7 7"/>
-                            </svg>
+                        <button type="submit" class="translate-button">
+                            Çeviri Yap
                         </button>
                     </div>
                 </div>
-            </div>
+            </form>
         </section>
-
-        <section class="history-section">
-            <div class="history-header">
-                <h2>Çeviri Geçmişi</h2>
-                <button class="clear-history" aria-label="Geçmişi Temizle">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M3 6h18"/>
-                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-                    </svg>
-                    <span>Geçmişi Temizle</span>
-                </button>
-            </div>
-            <ul class="history-list"></ul>
-        </section>
-    </div>
+    </div>
 </main>
