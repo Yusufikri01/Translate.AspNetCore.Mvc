@@ -4,7 +4,7 @@ using Translate.AspNetCore.Mvc.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Azure")));
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Local")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

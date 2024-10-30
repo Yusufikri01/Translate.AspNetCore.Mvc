@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Translate.AspNetCore.Mvc.Entities;
 
@@ -10,9 +11,11 @@ using Translate.AspNetCore.Mvc.Entities;
 namespace Translate.AspNetCore.Mvc.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241030160857_UpdateWordAndWordLevel")]
+    partial class UpdateWordAndWordLevel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,29 +51,6 @@ namespace Translate.AspNetCore.Mvc.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Translate.AspNetCore.Mvc.Models.WordBookModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WordId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.HasIndex("WordId");
-
-                    b.ToTable("WordBooks");
                 });
 
             modelBuilder.Entity("Translate.AspNetCore.Mvc.Models.WordLevelModel", b =>
@@ -136,25 +116,6 @@ namespace Translate.AspNetCore.Mvc.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("WordTypes");
-                });
-
-            modelBuilder.Entity("Translate.AspNetCore.Mvc.Models.WordBookModel", b =>
-                {
-                    b.HasOne("Translate.AspNetCore.Mvc.Models.UserModel", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Translate.AspNetCore.Mvc.Models.WordModel", "Word")
-                        .WithMany()
-                        .HasForeignKey("WordId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-
-                    b.Navigation("Word");
                 });
 
             modelBuilder.Entity("Translate.AspNetCore.Mvc.Models.WordModel", b =>
