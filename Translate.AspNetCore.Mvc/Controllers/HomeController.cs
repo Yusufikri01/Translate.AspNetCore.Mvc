@@ -22,7 +22,7 @@ namespace Translate.AspNetCore.Mvc.Controllers
         var translationResult = _translationService.Translate(word, fromLang, toLang);
     ViewBag.Translation = translationResult;
     
-    // Kullanıcı girdilerini tekrar View'e gönderme
+  
     ViewBag.Word = word;
     ViewBag.FromLang = fromLang;
     ViewBag.ToLang = toLang;
