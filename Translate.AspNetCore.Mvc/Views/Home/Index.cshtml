@@ -12,9 +12,8 @@
                             <option value="tr">Türkçe</option>
                             <option value="en">İngilizce</option>
                         </select>
-                        <button type="button" class="swap-lang" aria-label="Dilleri Değiştir">
-                            <!-- Swap icon -->
-                        </button>
+                        <button type="button" class="swap-lang" aria-label="Dilleri Değiştir">⇄</button>
+
                         <select name="toLang" class="to-lang">
                             <option value="en">İngilizce</option>
                             <option value="tr">Türkçe</option>
@@ -26,7 +25,7 @@
                             <textarea name="word"
                                       class="input-text"
                                       placeholder="Çeviri için metin girin..."
-                                      maxlength="5000"></textarea>
+                                      maxlength="5000">@ViewBag.Word</textarea>
                         </div>
 
                         <div class="output-area">

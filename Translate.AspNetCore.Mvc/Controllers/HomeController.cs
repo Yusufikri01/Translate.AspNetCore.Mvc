@@ -8,41 +8,27 @@ namespace Translate.AspNetCore.Mvc.Controllers
 {
 	public class HomeController : Controller
 	{
-		private readonly ILogger<HomeController> _logger;
-        private readonly AppDbContext _context;
+	   private readonly ILogger<HomeController> _logger;
+    private readonly ITranslationService _translationService;
 
-
-        public HomeController(ILogger<HomeController> logger, AppDbContext context)
-		{
-			_logger = logger;
-            _context = context;
-        }
+    public HomeController(ILogger<HomeController> logger, ITranslationService translationService)
+    {
+        _logger = logger;
+        _translationService = translationService;
+    }
         [HttpPost]
-        public IActionResult Translate(string word, string fromLang, string toLang)
-        {
-            if (string.IsNullOrWhiteSpace(word) || string.IsNullOrWhiteSpace(fromLang) || string.IsNullOrWhiteSpace(toLang))
-            {
-                ViewBag.Translation = "Lütfen tüm alanları doldurun.";
-                return View("Index");
-            }
+    public IActionResult Translate(string word, string fromLang, string toLang)
+    {
+        var translationResult = _translationService.Translate(word, fromLang, toLang);
+    ViewBag.Translation = translationResult;
+    
+    // Kullanıcı girdilerini tekrar View'e gönderme
+    ViewBag.Word = word;
+    ViewBag.FromLang = fromLang;
+    ViewBag.ToLang = toLang;
 
-            WordModel translation = null;
-
-            if (fromLang == "tr" && toLang == "en")
-            {
-                translation = _context.Words.FirstOrDefault(w => w.Turkish == word);
-            }
-            else if (fromLang == "en" && toLang == "tr")
-            {
-                translation = _context.Words.FirstOrDefault(w => w.English == word);
-            }
-
-            ViewBag.Translation = translation != null
-                ? (toLang == "tr" ? translation.Turkish : translation.English)
-                : "Çeviri bulunamadı.";
-
-            return View("Index");
-        }
+    return View("Index");
+    }
 
 
         public IActionResult Index()
