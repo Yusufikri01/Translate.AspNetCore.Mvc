@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Translate.AspNetCore.Mvc.Entities;
+using Translate.AspNetCore.Mvc.Filters;
+using Translate.AspNetCore.Mvc.service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,8 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(buil
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<ITranslationService, TranslationService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ValidateModelAttribute, ValidateModelAttribute>();
 
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
